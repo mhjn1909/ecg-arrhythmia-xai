@@ -19,12 +19,16 @@ def load_model():
 
 def main():
     print("Step 1: Preprocessing ECG (Team B)")
-    signal, fs = preprocess_ecg()
 
+    # Example raw input (replace with real ECG loading)
+    fs = 360
+    raw_signal = np.load("data/sample_ecg.npy")  # or however you load ECG
+
+    signal = preprocess_ecg(raw_signal, fs)   # ✅ ONLY ONE VALUE
 
     print("Step 2: Segmenting beats (Team B)")
     beats = segment_beats(signal, fs)
-    # beats shape must be (N, 1, 360)
+    # beats shape: (N, 1, 360)
 
     print("Step 3: Loading trained model (Team A)")
     model = load_model()
@@ -35,9 +39,8 @@ def main():
         preds = torch.sigmoid(model(beats))
 
     print("Step 5: Explainability (Team B)")
-    generate_explainability(model, beats, preds)
+    generate_explainability()   # demo.py standalone
 
     print("✅ PIPELINE COMPLETED SUCCESSFULLY")
-
-if __name__ == "__main__":
+if __name__ == "__main__": 
     main()
