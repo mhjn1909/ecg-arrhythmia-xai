@@ -2,6 +2,8 @@
 from src.preprocessing import preprocess_ecg
 from src.segmentation import segment_beats
 from demo import generate_explainability
+import numpy as np
+
 
 # ================= TEAM A =================
 import torch
