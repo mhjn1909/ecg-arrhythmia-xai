@@ -1,5 +1,5 @@
 # ================= TEAM B =================
-from src.preprocessing import preprocess_signal
+from src.preprocessing import preprocess_ecg
 from src.segmentation import segment_beats
 from demo import generate_explainability
 
@@ -19,7 +19,8 @@ def load_model():
 
 def main():
     print("Step 1: Preprocessing ECG (Team B)")
-    signal, fs = preprocess_signal()
+    signal, fs = preprocess_ecg()
+
 
     print("Step 2: Segmenting beats (Team B)")
     beats = segment_beats(signal, fs)
