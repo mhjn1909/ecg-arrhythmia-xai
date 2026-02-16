@@ -70,8 +70,7 @@ def plot_comparison(normal_data, abnormal_data, filename="ecg_comparison_panel.p
     plt.savefig(filename, dpi=300)
     plt.close()
 
-
-def main():
+def generate_explainability():
     print("Loading dataset...")
     dataset = ECGDataset()
 
@@ -89,10 +88,17 @@ def main():
 
     print(f"Saved comparison panel as {filename}")
 
-    # Open automatically on macOS
-    os.system(f"open {filename}")
+    # OS-safe open
+    if os.name == "nt":   # Windows
+        os.startfile(filename)
+    else:                 # macOS / Linux
+        os.system(f"open {filename}")
 
 
 if __name__ == "__main__":
-    main()
+    generate_explainability()
+
+
+
+
 
